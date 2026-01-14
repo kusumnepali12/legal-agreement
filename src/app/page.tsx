@@ -26,6 +26,7 @@ export default function DigitalAgreement() {
     internEmail: "",
     startDate: "2026-01-12",
     internCharge: "500",
+    role: "Frontend Development",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,6 +51,7 @@ export default function DigitalAgreement() {
         internEmail: "",
         startDate: "2026-01-12",
         internCharge: "500",
+         role: "Frontend Development",
       });
       setTimeout(() => setSuccess(false), 5000);
     } catch (error) {
@@ -169,45 +171,69 @@ export default function DigitalAgreement() {
                 <p className="text-[11px] text-gray-400 font-bold mt-2">
                   Duration: <span className="text-white">1 Month</span>
                 </p>
-                <p className="text-[11px] text-gray-400 font-bold">
-                  Role:{" "}
-                  <span className="text-white underline">
-                    Frontend Development
-                  </span>
-                </p>
+                <div className="space-y-2">
+  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 flex items-center gap-2">
+    <PenTool size={12} /> Specialization Role
+  </label>
+  <select
+    required
+    value={formData.role}
+    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+    className="w-full bg-white/[0.05] border border-white/10 p-4 rounded-xl font-bold tracking-tight outline-none focus:border-white/40 appearance-none cursor-pointer text-white"
+  >
+    <option value="Frontend Development" className="bg-[#050505]">Frontend Development</option>
+    <option value="Backend Development" className="bg-[#050505]">Backend Development</option>
+    <option value="Fullstack Development" className="bg-[#050505]">Fullstack Development</option>
+  </select>
+</div>
               </div>
             </div>
 
-            <div className="bg-white/[0.02] p-6 rounded-xl border border-white/5 space-y-4">
-              <h3 className="font-black uppercase tracking-tighter flex items-center gap-2 text-gray-300">
-                <PenTool size={16} /> Internship Charge
-              </h3>
-              <div className="flex gap-8 py-2">
-                {["500", "1000"].map((val) => (
-                  <label
-                    key={val}
-                    className="flex items-center gap-3 cursor-pointer group"
-                  >
-                    <input
-                      type="radio"
-                      name="charge"
-                      value={val}
-                      checked={formData.internCharge === val}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          internCharge: e.target.value,
-                        })
-                      }
-                      className="accent-white h-4 w-4"
-                    />
-                    <span className="font-bold tracking-tighter text-gray-500 group-hover:text-white transition-colors uppercase text-sm">
-                      Rs. {val}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
+            <div className="bg-white/[0.05] border border-white/10 p-6 rounded-xl space-y-6">
+  <div className="space-y-4">
+    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 flex items-center gap-2">
+      <ShieldCheck size={12} /> Internship Charge
+    </label>
+    
+    <div className="flex gap-6">
+      <label className="flex items-center gap-3 cursor-pointer group">
+        <input
+          type="radio"
+          name="internCharge"
+          value="500"
+          checked={formData.internCharge === "500"}
+          onChange={(e) => setFormData({ ...formData, internCharge: e.target.value })}
+          className="w-4 h-4 accent-white"
+        />
+        <span className="text-sm font-bold tracking-widest uppercase">Rs. 500</span>
+      </label>
+      <label className="flex items-center gap-3 cursor-pointer group">
+        <input
+          type="radio"
+          name="internCharge"
+          value="1000"
+          checked={formData.internCharge === "1000"}
+          onChange={(e) => setFormData({ ...formData, internCharge: e.target.value })}
+          className="w-4 h-4 accent-white"
+        />
+        <span className="text-sm font-bold tracking-widest uppercase">Rs. 1000</span>
+      </label>
+    </div>
+  </div>
+
+  {/* NEW CONTENT TO FILL THE GAP */}
+  <div className="pt-6 border-t border-white/5 space-y-3">
+    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">
+      Payment Policy
+    </h4>
+    <ul className="text-[11px] text-gray-400 space-y-2 leading-relaxed tracking-wide italic">
+      <li>• Fee is non-refundable once the training commences.</li>
+      <li>• Includes certification and digital resources access.</li>
+      <li>• Payment confirms your seat in the specialization track.</li>
+    </ul>
+  </div>
+</div>
+
           </section>
 
           {/* RESPONSIBILITIES SECTION - RESTORED & STYLED [cite: 2026-01-03] */}
